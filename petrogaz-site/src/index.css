@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0a0f1e;
+  color: #f1f5f9;
+  overflow-x: hidden;
+}
+
+.font-display { font-family: 'Montserrat', sans-serif; }
+
+/* Gradient texte or */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #f5c842, #e6a800, #f5c842);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient bleu pétrole */
+.text-petroleum-gradient {
+  background: linear-gradient(135deg, #36aaf5, #0c8ee6, #006fc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Fond grille subtile */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(12, 142, 230, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 142, 230, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Glow effect */
+.glow-blue {
+  box-shadow: 0 0 40px rgba(12, 142, 230, 0.3);
+}
+.glow-gold {
+  box-shadow: 0 0 40px rgba(245, 200, 66, 0.3);
+}
+
+/* Card glass */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0f1e; }
+::-webkit-scrollbar-thumb { background: #006fc4; border-radius: 3px; }
+
+/* Section padding */
+.section-padding { padding: 6rem 0; }
+
+@media (max-width: 768px) {
+  .section-padding { padding: 4rem 0; }
+}
