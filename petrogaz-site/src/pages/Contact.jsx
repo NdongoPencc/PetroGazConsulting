@@ -75,16 +75,26 @@ export default function Contact() {
                 }
               </div>
             ))}
-            <div className="glass-card rounded-xl overflow-hidden h-40 flex items-center justify-center relative border border-petroleum-500/10">
-              <div className="absolute inset-0 bg-gradient-to-br from-petroleum-900/90 to-petroleum-950/90" />
-              <div className="relative text-center space-y-1.5">
-                <div className="w-10 h-10 mx-auto rounded-full bg-petroleum-600/30 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-petroleum-400" />
-                </div>
-                <p className="text-white font-semibold text-sm">Dakar, Sénégal</p>
-                <p className="text-slate-400 text-xs">Plateau, Dakar</p>
-              </div>
+            <div className="glass-card rounded-xl overflow-hidden border border-petroleum-500/10" style={{ height: '200px' }}>
+              <iframe
+                title="Localisation PétroGaz Consulting"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-17.3543%2C14.7942%2C-17.3144%2C14.8142&layer=mapnik&marker=14.804214%2C-17.334368"
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.85) contrast(0.9)' }}
+                loading="lazy"
+                allowFullScreen
+              />
             </div>
+            <a
+              href="https://maps.google.com/?q=14.804214,-17.334368"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 glass-card rounded-xl px-4 py-2.5 text-petroleum-400 hover:text-gold-400 text-xs font-medium transition-colors border border-petroleum-500/10 hover:border-gold-500/30"
+            >
+              <MapPin className="w-3.5 h-3.5" />
+              {t('contact.open_maps')}
+            </a>
           </motion.div>
 
           {/* Formulaire */}
@@ -93,8 +103,8 @@ export default function Contact() {
             {sent ? (
               <div className="glass-card rounded-2xl p-12 flex flex-col items-center justify-center text-center h-full">
                 <CheckCircle className="w-16 h-16 text-green-400 mb-4" />
-                <h3 className="font-display font-bold text-white text-xl mb-2">Message envoyé !</h3>
-                <p className="text-slate-400">Notre équipe vous répondra sous 24h ouvrées.</p>
+                <h3 className="font-display font-bold text-white text-xl mb-2">{t('contact.sent_title')}</h3>
+                <p className="text-slate-400">{t('contact.sent_desc')}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-5 sm:p-8 space-y-4">
@@ -113,8 +123,8 @@ export default function Contact() {
                 </div>
                 <div className="grid sm:grid-cols-2 gap-5">
                   {[
-                    { name: 'company', label: t('contact.form_company'), placeholder: 'Votre entreprise' },
-                    { name: 'phone',   label: t('contact.form_phone'),   placeholder: '+221 77 000 00 00' },
+                    { name: 'company', label: t('contact.form_company'), placeholder: t('contact.placeholder_company') },
+                    { name: 'phone',   label: t('contact.form_phone'),   placeholder: t('contact.placeholder_phone') },
                   ].map(f => (
                     <div key={f.name}>
                       <label className="block text-xs text-slate-400 mb-1.5 font-medium">{f.label}</label>
@@ -127,7 +137,7 @@ export default function Contact() {
                   <label className="block text-xs text-slate-400 mb-1.5 font-medium">{t('contact.form_subject')} *</label>
                   <select name="subject" value={form.subject} onChange={handleChange} required
                     className="w-full bg-[#0a0f1e] border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-petroleum-500 transition-colors">
-                    <option value="">-- Choisir un sujet --</option>
+                    <option value="">{t('contact.subject_placeholder')}</option>
                     {t('contact.subject_options', { returnObjects: true }).map((opt, i) => (
                       <option key={i} value={opt}>{opt}</option>
                     ))}
@@ -136,7 +146,7 @@ export default function Contact() {
                 <div>
                   <label className="block text-xs text-slate-400 mb-1.5 font-medium">{t('contact.form_message')} *</label>
                   <textarea name="message" value={form.message} onChange={handleChange} required rows={5}
-                    placeholder="Décrivez votre projet ou votre demande..."
+                    placeholder={t('contact.placeholder_message')}
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-petroleum-500 transition-colors resize-none" />
                 </div>
                 <button type="submit" disabled={sending}
